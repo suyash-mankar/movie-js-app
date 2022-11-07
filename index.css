@@ -1,0 +1,189 @@
+body {
+  background-color: #2c3333;
+}
+
+::placeholder {
+  color: #1e1e1e;
+}
+
+input:focus, textarea:focus, select:focus{
+  outline: none;
+}
+
+.navbar {
+  background-color: #212529;
+  display: flex;
+  height: 70px;
+}
+
+.navbar img {
+  width: 50px;
+  margin-left: 20px;
+}
+
+.navbar input {
+  width: 30%;
+  border-radius: 20px;
+  border: none;
+  margin-right: 50%;
+  font-size: 1.1rem;
+  padding: 5px 20px;
+  background-color: #6c757d;
+  color: white;
+}
+
+.movies-container {
+  display: flex;
+}
+
+.search-results-container {
+  height: auto;
+  width: 60%;
+  background-color: #2c3333;
+  padding-top: 50px;
+  text-align: center;
+}
+
+#search-results {
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  background-color: #2c3333;
+  padding: 50px 50px;
+}
+
+.search-results-container h1 {
+  
+  color: #e2b616;
+}
+
+#movie-card {
+  display: flex;
+  flex-direction: row;
+  margin: 10px 0;
+  padding: 5px;
+  border-radius: 10px;
+  align-items: center;
+}
+
+#movie-card:hover {
+  box-shadow: 0px 0px 5px 5px yellow;
+
+}
+
+#poster {
+  width: 100px;
+  border-radius: 10px;
+}
+
+#movie-card button {
+  height: 40px;
+  position: absolute;
+  right: 50px;
+  border-radius: 10px;
+  padding: 1px 15px;
+  border: 1px solid lightgrey;
+  background-color: whitesmoke;
+  box-shadow: 1px -1px 5px 1px #a3a2a2;
+
+}
+
+#movie-card button:hover {
+  background-color: #2c3333;
+  color: yellow;
+  border: none;
+}
+
+#movie-card .movie-details {
+  padding: 0px 50px;
+  text-align: left;
+}
+
+.fa-star {
+  color: #ffc107;
+}
+
+.fa-heart {
+  color: red;
+}
+
+.fa-magnifying-glass{
+  color: #1e1e1e;
+  position: absolute;
+  left: 47%;
+  background-color: #ffc107;
+  padding: 10.5px 20px;
+  border-radius: 0px 20px 20px 0;
+}
+
+#favourites-container {
+  width: 40%;
+  background-color: #1c1b1b;
+  text-align: center;
+  padding: 50px 0;
+  height: auto;
+}
+
+#favourite-list {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 63px;
+}
+
+
+
+#favourites-container h1 {
+  color: #e2b616;
+}
+
+
+.fav-card{
+  border-radius: 10px;
+  width: 80%;
+  height: auto;
+  display: flex;
+  background-color: white;
+  margin: 5px auto;
+  padding: 5px;
+  position: relative;
+  align-items: center;
+}
+
+.fav-card img{
+  border-radius: 10px;
+
+}
+
+.fav-card #poster{
+  width: 50px;
+}
+
+.fav-card .movie-details{
+ 
+  margin: 0 50px 0 20px;
+  text-align: left;
+}
+
+.movie-details p{
+  padding: 0;
+  margin: 0;
+}
+
+p:first-child{
+  font-weight: bold;
+}
+
+.fa-trash{
+  color:red;
+  position: absolute;
+  bottom: 35px;
+  right: 20px;
+  font-size: 1.5rem;
+}
+
+.fa-trash:hover{
+  cursor: pointer;
+  color: darkred;
+}
+
