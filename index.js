@@ -45,9 +45,14 @@ function addSearchResultsToDom(data) {
     movieCard.setAttribute("class", "card");
 
     movieCard.innerHTML = `
-      <img id='poster' src="${data.Poster}" alt="movie-poster" />
-      <div class="movie-details"> 
-          <h4>${data.Title}</h4>
+
+    <a href='movie.html'>
+      <img id='poster' src="${data.Poster}" data-id='${data.Title}' alt="movie-poster" />
+    </a>
+      <div class="movie-details">
+        <a href='movie.html'>
+          <h4 data-id='${data.Title}'>${data.Title}</h4>
+        </a>
           <p> Genre : ${data.Genre} </p>
           <p> Year : ${data.Year} </p>
           <p> IMDB : <i class="fa-solid fa-star"></i> ${data.imdbRating} </p>
@@ -71,9 +76,16 @@ function addFavouriteToDOM() {
       favouriteCard.setAttribute("class", "fav-card");
 
       favouriteCard.innerHTML = `
-        <img id='poster' src="${movie.Poster}" alt="movie-poster" />
+
+        <a href='movie.html'>
+          <img id='poster' src="${movie.Poster}" data-id='${movie.Title}' alt="movie-poster" />
+        </a>
+        
         <div class="movie-details"> 
-            <p class="font-weight-bold">${movie.Title}</p>
+
+        <a href='movie.html'>
+          <p class="font-weight-bold" data-id='${movie.Title}'>${movie.Title}</p>
+        </a>
             <p> Year : ${movie.Year} </p>
             <p> IMDB : <i class="fa-solid fa-star"></i> ${movie.imdbRating} </p>
         </div>
@@ -136,6 +148,8 @@ function handleClick(e) {
     e.preventDefault();
     handleDeleteFavoutiteBtn(e);
   }
+
+  localStorage.setItem("movieName", target.dataset.id);
 }
 
 document.addEventListener("click", handleClick);

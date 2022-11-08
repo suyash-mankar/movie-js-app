@@ -1,0 +1,50 @@
+body {
+  background-color: #2c3333;
+}
+
+::placeholder {
+  color: #1e1e1e;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+}
+
+.navbar {
+  background-color: #212529;
+  display: flex;
+  height: 70px;
+}
+
+.navbar img {
+  width: 50px;
+  margin-left: 20px;
+}
+
+.navbar input {
+  width: 30%;
+  border-radius: 20px;
+  border: none;
+  margin-right: 50%;
+  font-size: 1.1rem;
+  padding: 5px 20px;
+  background-color: #6c757d;
+  color: white;
+}
+
+p,
+h4,
+h1 {
+  color: white;
+}
+
+.heading{
+    display: flex;
+}
+
+
+.movie-info-container {
+  display: flex;
+}
