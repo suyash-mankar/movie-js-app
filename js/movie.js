@@ -17,7 +17,6 @@ async function addMovieToDom() {
   const movieName = localStorage.getItem("movieName");
   const data = await fetchMovie(movieName);
   const movieContainer = document.createElement("div");
-  console.log(data);
   movieContainer.setAttribute("class", "movie-container");
 
   movieContainer.innerHTML = `

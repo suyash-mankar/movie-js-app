@@ -40,22 +40,24 @@ function addSearchResultsToDom(data) {
 
   if (!isPresent) {
     movies.push(data);
-    const movieCard = document.createElement("div");
+    const movieCard = document.createElement("a");
     movieCard.setAttribute("id", "movie-card");
     movieCard.setAttribute("class", "card");
+    movieCard.setAttribute("data-id", `${data.Title}`);
+    movieCard.setAttribute("href", `movie.html`);
 
     movieCard.innerHTML = `
 
     <a href='movie.html'>
       <img id='poster' src="${data.Poster}" data-id='${data.Title}' alt="movie-poster" />
     </a>
-      <div class="movie-details">
+      <div class="movie-details" data-id='${data.Title}'>
         <a href='movie.html'>
           <h4 data-id='${data.Title}'>${data.Title}</h4>
         </a>
-          <p> Genre : ${data.Genre} </p>
-          <p> Year : ${data.Year} </p>
-          <p> IMDB : <i class="fa-solid fa-star"></i> ${data.imdbRating} </p>
+          <p data-id='${data.Title}'> Genre : ${data.Genre} </p>
+          <p data-id='${data.Title}'> Year : ${data.Year} </p>
+          <p data-id='${data.Title}'> IMDB : <i class="fa-solid fa-star"></i> ${data.imdbRating} </p>
       </div>
       <button data-id="${data.Title}" class="add-favourite"> <i class="fa-regular fa-heart"></i> Add to Favourite</button>    
     `;
@@ -72,8 +74,10 @@ function addFavouriteToDOM() {
   let favouriteMoviesList = JSON.parse(localStorage.getItem("favMovieList"));
   if (favouriteMoviesList) {
     favouriteMoviesList.map((movie) => {
-      const favouriteCard = document.createElement("div");
+      const favouriteCard = document.createElement("a");
       favouriteCard.setAttribute("class", "fav-card");
+      favouriteCard.setAttribute("data-id", `${movie.Title}`);
+      favouriteCard.setAttribute("href", `movie.html`);
 
       favouriteCard.innerHTML = `
 
@@ -81,13 +85,13 @@ function addFavouriteToDOM() {
           <img id='poster' src="${movie.Poster}" data-id='${movie.Title}' alt="movie-poster" />
         </a>
         
-        <div class="movie-details"> 
+        <div class="movie-details" data-id='${movie.Title}'> 
 
         <a href='movie.html'>
           <p class="font-weight-bold" data-id='${movie.Title}'>${movie.Title}</p>
         </a>
-            <p> Year : ${movie.Year} </p>
-            <p> IMDB : <i class="fa-solid fa-star"></i> ${movie.imdbRating} </p>
+            <p data-id='${movie.Title}'> Year : ${movie.Year} </p>
+            <p data-id='${movie.Title}'> IMDB : <i class="fa-solid fa-star"></i> ${movie.imdbRating} </p>
         </div>
         <i class="fa-solid fa-trash" data-id="${movie.Title}"></i>    
       `;

@@ -6,18 +6,25 @@ body {
   color: #1e1e1e;
 }
 
-input:focus, textarea:focus, select:focus{
+input:focus,
+textarea:focus,
+select:focus {
   outline: none;
+}
+
+a {
+  text-decoration: none;
+  color: black;
 }
 
 .navbar {
   background-color: #212529;
   display: flex;
-  height: 70px;
+  align-items: center;
 }
 
 .navbar img {
-  width: 50px;
+  width: 70px;
   margin-left: 20px;
 }
 
@@ -30,6 +37,10 @@ input:focus, textarea:focus, select:focus{
   padding: 5px 20px;
   background-color: #6c757d;
   color: white;
+}
+
+.fa-magnifying-glass:hover {
+  cursor: pointer;
 }
 
 .movies-container {
@@ -53,7 +64,6 @@ input:focus, textarea:focus, select:focus{
 }
 
 .search-results-container h1 {
-  
   color: #e2b616;
 }
 
@@ -68,7 +78,6 @@ input:focus, textarea:focus, select:focus{
 
 #movie-card:hover {
   box-shadow: 0px 0px 5px 5px yellow;
-
 }
 
 #poster {
@@ -85,7 +94,6 @@ input:focus, textarea:focus, select:focus{
   border: 1px solid lightgrey;
   background-color: whitesmoke;
   box-shadow: 1px -1px 5px 1px #a3a2a2;
-
 }
 
 #movie-card button:hover {
@@ -107,7 +115,7 @@ input:focus, textarea:focus, select:focus{
   color: red;
 }
 
-.fa-magnifying-glass{
+.fa-magnifying-glass {
   color: #1e1e1e;
   position: absolute;
   left: 47%;
@@ -131,14 +139,11 @@ input:focus, textarea:focus, select:focus{
   margin-top: 63px;
 }
 
-
-
 #favourites-container h1 {
   color: #e2b616;
 }
 
-
-.fav-card{
+.fav-card {
   border-radius: 10px;
   width: 80%;
   height: auto;
@@ -150,40 +155,41 @@ input:focus, textarea:focus, select:focus{
   align-items: center;
 }
 
-.fav-card img{
-  border-radius: 10px;
-
+.fav-card:hover {
+  box-shadow: 0px 0px 5px 5px yellow;
 }
 
-.fav-card #poster{
+.fav-card img {
+  border-radius: 10px;
+}
+
+.fav-card #poster {
   width: 50px;
 }
 
-.fav-card .movie-details{
- 
+.fav-card .movie-details {
   margin: 0 50px 0 20px;
   text-align: left;
 }
 
-.movie-details p{
+.movie-details p {
   padding: 0;
   margin: 0;
 }
 
-p:first-child{
+p:first-child {
   font-weight: bold;
 }
 
-.fa-trash{
-  color:red;
+.fa-trash {
+  color: red;
   position: absolute;
   bottom: 35px;
   right: 20px;
   font-size: 1.5rem;
 }
 
-.fa-trash:hover{
+.fa-trash:hover {
   cursor: pointer;
   color: darkred;
 }
-
