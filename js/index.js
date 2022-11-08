@@ -1,56 +1,67 @@
-const searchResultsContainer = document.getElementById("search-results");
-const searchText = document.getElementsByTagName("input")[0];
-const favouriteListContainer = document.getElementById("favourite-list");
-let movies = [];
-let favList = [];
+(function () {
+  const searchResultsContainer = document.getElementById("search-results");
+  const searchText = document.getElementsByTagName("input")[0];
+  const favouriteListContainer = document.getElementById("favourite-list");
 
-addFavouriteToDOM();
+  // Array to store the search results
+  let movies = [];
+  // Array to store the favourite movies
+  let favList = [];
 
-searchText.onkeyup = function (e) {
-  async function getMovies() {
-    let data = await fetchMovie(e.target.value);
-    addSearchResultsToDom(data);
-  }
-  getMovies();
-};
+  addFavouriteToDOM();
 
-async function fetchMovie(searchText) {
-  const url = `http://www.omdbapi.com/?i=tt3896198&apikey=49e67bb9&t=${searchText}`;
-  try {
-    const response = await fetch(url);
-    const data = await response.json();
-    return data;
-  } catch (err) {
-    console.log(err);
-    return;
-  }
-}
-
-function addSearchResultsToDom(data) {
-  let isPresent = false;
-  if (data.Title === "undefined" || data.Response === "False") {
-    return;
-  }
-
-  movies.forEach((movie) => {
-    if (movie.Title == data.Title) {
-      isPresent = true;
+  // Event listner on search
+  searchText.onkeyup = function (e) {
+    async function getMovies() {
+      // fetch the movie data
+      let data = await fetchMovie(e.target.value);
+      addSearchResultsToDom(data);
     }
-  });
+    getMovies();
+  };
 
-  if (!isPresent) {
-    movies.push(data);
-    const movieCard = document.createElement("a");
-    movieCard.setAttribute("id", "movie-card");
-    movieCard.setAttribute("class", "card");
-    movieCard.setAttribute("data-id", `${data.Title}`);
-    movieCard.setAttribute("href", `movie.html`);
+  // function to fetch the data from API and return it
+  async function fetchMovie(searchText) {
+    const url = `http://www.omdbapi.com/?i=tt3896198&apikey=49e67bb9&t=${searchText}`;
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+      return data;
+    } catch (err) {
+      console.log(err);
+      return;
+    }
+  }
 
-    movieCard.innerHTML = `
+  // function to show the search results on homepage
+  function addSearchResultsToDom(data) {
+    let isPresent = false;
+    if (data.Title === "undefined" || data.Response === "False") {
+      return;
+    }
 
-    <a href='movie.html'>
-      <img id='poster' src="${data.Poster}" data-id='${data.Title}' alt="movie-poster" />
-    </a>
+    // check if the movie is already present in the movies array
+    movies.forEach((movie) => {
+      if (movie.Title == data.Title) {
+        isPresent = true;
+      }
+    });
+
+    // if the movie is not already present
+    if (!isPresent) {
+      movies.push(data);
+
+      // create a movie card element
+      const movieCard = document.createElement("a");
+      movieCard.setAttribute("id", "movie-card");
+      movieCard.setAttribute("class", "card");
+      movieCard.setAttribute("data-id", `${data.Title}`);
+      movieCard.setAttribute("href", `movie.html`);
+
+      movieCard.innerHTML = `
+      <a href='movie.html'>
+        <img id='poster' src="${data.Poster}" data-id='${data.Title}' alt="movie-poster" />
+      </a>
       <div class="movie-details" data-id='${data.Title}'>
         <a href='movie.html'>
           <h4 data-id='${data.Title}'>${data.Title}</h4>
@@ -61,32 +72,36 @@ function addSearchResultsToDom(data) {
       </div>
       <button data-id="${data.Title}" class="add-favourite"> <i class="fa-regular fa-heart"></i> Add to Favourite</button>    
     `;
-    searchResultsContainer.prepend(movieCard);
+
+      // prepend the movie card element in the search results container
+      searchResultsContainer.prepend(movieCard);
+    }
+
+    // if the input is empty -> clear the search results container
+    if (searchText.value === "") {
+      searchResultsContainer.innerHTML = "";
+    }
   }
 
-  if (searchText.value === "") {
-    searchResultsContainer.innerHTML = "";
-  }
-}
+  // function to add favourite movies to home page
+  function addFavouriteToDOM() {
+    favouriteListContainer.innerHTML = "";
 
-function addFavouriteToDOM() {
-  favouriteListContainer.innerHTML = "";
-  let favouriteMoviesList = JSON.parse(localStorage.getItem("favMovieList"));
-  if (favouriteMoviesList) {
-    favouriteMoviesList.map((movie) => {
-      const favouriteCard = document.createElement("a");
-      favouriteCard.setAttribute("class", "fav-card");
-      favouriteCard.setAttribute("data-id", `${movie.Title}`);
-      favouriteCard.setAttribute("href", `movie.html`);
+    // get the favourite movie list from local storage
+    let favouriteMoviesList = JSON.parse(localStorage.getItem("favMovieList"));
+    if (favouriteMoviesList) {
+      favouriteMoviesList.map((movie) => {
+        // create a favourite card
+        const favouriteCard = document.createElement("a");
+        favouriteCard.setAttribute("class", "fav-card");
+        favouriteCard.setAttribute("data-id", `${movie.Title}`);
+        favouriteCard.setAttribute("href", `movie.html`);
 
-      favouriteCard.innerHTML = `
-
+        favouriteCard.innerHTML = `
         <a href='movie.html'>
           <img id='poster' src="${movie.Poster}" data-id='${movie.Title}' alt="movie-poster" />
         </a>
-        
         <div class="movie-details" data-id='${movie.Title}'> 
-
         <a href='movie.html'>
           <p class="font-weight-bold" data-id='${movie.Title}'>${movie.Title}</p>
         </a>
@@ -95,65 +110,78 @@ function addFavouriteToDOM() {
         </div>
         <i class="fa-solid fa-trash" data-id="${movie.Title}"></i>    
       `;
-      favouriteListContainer.prepend(favouriteCard);
-    });
-  }
-}
-
-async function handleAddFavoutiteBtn(e) {
-  const target = e.target;
-  const data = await fetchMovie(target.dataset.id);
-
-  let moviesArrayFromLocalStorage = JSON.parse(
-    localStorage.getItem("favMovieList")
-  );
-
-  if (moviesArrayFromLocalStorage) {
-    favList = moviesArrayFromLocalStorage;
-  }
-
-  let isMoviePresentInLocalStorage = false;
-
-  favList.forEach((movie) => {
-    if (movie.Title === data.Title) {
-      isMoviePresentInLocalStorage = true;
+        // prepend the favourite card element in the favourite List Container
+        favouriteListContainer.prepend(favouriteCard);
+      });
     }
-  });
+  }
 
-  if (!isMoviePresentInLocalStorage) {
-    favList.push(data);
-    localStorage.setItem("favMovieList", JSON.stringify(favList));
+  // function to add the movie to favourites
+  async function handleAddFavoutiteBtn(e) {
+    const target = e.target;
+    // fetch the data of the movie
+    const data = await fetchMovie(target.dataset.id);
+
+    // get the fav movies array from local storage
+    let moviesArrayFromLocalStorage = JSON.parse(
+      localStorage.getItem("favMovieList")
+    );
+
+    if (moviesArrayFromLocalStorage) {
+      favList = moviesArrayFromLocalStorage;
+    }
+
+    let isMoviePresentInLocalStorage = false;
+
+    // check if the movie is already present in the favList array
+    favList.forEach((movie) => {
+      if (movie.Title === data.Title) {
+        isMoviePresentInLocalStorage = true;
+      }
+    });
+
+    // if movie is not present in the array, push it
+    if (!isMoviePresentInLocalStorage) {
+      favList.push(data);
+      // set the fav movie array in local storage
+      localStorage.setItem("favMovieList", JSON.stringify(favList));
+      addFavouriteToDOM();
+    }
+  }
+
+  // function to delete the movie from favourites
+  function handleDeleteFavoutiteBtn(e) {
+    const target = e.target;
+    const movieTitle = target.dataset.id;
+    // get the fav movie array from local storage
+    let favList = JSON.parse(localStorage.getItem("favMovieList"));
+    // remove the movie to be deleted from the array
+    let updatedList = favList.filter((movie) => {
+      return movie.Title != movieTitle;
+    });
+    // set the array in the local storage
+    localStorage.setItem("favMovieList", JSON.stringify(updatedList));
+    // To refresh the favourite movie list in the home page
+    favouriteListContainer.innerHTML = "";
     addFavouriteToDOM();
   }
-}
 
-function handleDeleteFavoutiteBtn(e) {
-  const target = e.target;
-  const movieTitle = target.dataset.id;
-
-  let favList = JSON.parse(localStorage.getItem("favMovieList"));
-
-  let updatedList = favList.filter((movie) => {
-    return movie.Title != movieTitle;
-  });
-
-  localStorage.setItem("favMovieList", JSON.stringify(updatedList));
-
-  favouriteListContainer.innerHTML = "";
-  addFavouriteToDOM();
-}
-
-function handleClick(e) {
-  const target = e.target;
-  if (target.classList.contains("add-favourite")) {
-    e.preventDefault();
-    handleAddFavoutiteBtn(e);
-  } else if (target.classList.contains("fa-trash")) {
-    e.preventDefault();
-    handleDeleteFavoutiteBtn(e);
+  // Handles click events
+  function handleClick(e) {
+    const target = e.target;
+    // If clicked on 'Add Favourite' button
+    if (target.classList.contains("add-favourite")) {
+      e.preventDefault();
+      handleAddFavoutiteBtn(e);
+      // If clicked on 'Delete' button
+    } else if (target.classList.contains("fa-trash")) {
+      e.preventDefault();
+      handleDeleteFavoutiteBtn(e);
+    }
+    // Store the movie name from the data-id attribute of the element you clicked in local storage
+    localStorage.setItem("movieName", target.dataset.id);
   }
 
-  localStorage.setItem("movieName", target.dataset.id);
-}
-
-document.addEventListener("click", handleClick);
+  // Event listner on whole document
+  document.addEventListener("click", handleClick);
+})();

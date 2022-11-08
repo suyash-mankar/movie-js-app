@@ -6,12 +6,19 @@ body {
   color: #1e1e1e;
 }
 
+p,
+h4,
+h1 {
+  color: white;
+}
+
 input:focus,
 textarea:focus,
 select:focus {
   outline: none;
 }
 
+/* Navbar */
 .navbar {
   background-color: #212529;
   display: flex;
@@ -21,7 +28,6 @@ select:focus {
 .navbar img {
   width: 70px;
   margin-left: 20px;
-  
 }
 
 .navbar input {
@@ -35,6 +41,7 @@ select:focus {
   color: white;
 }
 
+/* Go Back Button */
 #back {
   background-color: #ffca2c;
   margin-right: 20px;
@@ -46,11 +53,7 @@ select:focus {
   background-color: yellow;
 }
 
-p,
-h4,
-h1 {
-  color: white;
-}
+/* Movie Heading - Title, Year, Runtime and Rating */
 
 .heading {
   position: relative;
@@ -85,6 +88,8 @@ h1 {
   color: #ffca2c;
 }
 
+/* Movie Info Container */
+
 .movie-info-container {
   display: flex;
   margin-top: 20px;
@@ -101,6 +106,8 @@ h1 {
 .movie-info-container img {
   width: 25%;
 }
+
+/* Movie Details */
 
 .movie-details {
   padding: 30px 50px;
@@ -122,6 +129,8 @@ span {
   color: rgb(125, 171, 239);
   font-weight: 400;
 }
+
+/* Media Query */
 
 @media screen and (max-width: 1100px) {
   .movie-info-container {

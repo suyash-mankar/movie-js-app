@@ -1,29 +1,33 @@
-const outerContainer = document.getElementById("outer-container");
+(function () {
+  const outerContainer = document.getElementById("outer-container");
 
-async function fetchMovie(searchText) {
-  const url = `http://www.omdbapi.com/?i=tt3896198&apikey=49e67bb9&t=${searchText}`;
-  try {
-    const response = await fetch(url);
-    const data = await response.json();
-    return data;
-  } catch (err) {
-    console.log(err);
-    return;
+  // function to fetch the data from API and return it
+  async function fetchMovie(searchText) {
+    const url = `http://www.omdbapi.com/?i=tt3896198&apikey=49e67bb9&t=${searchText}`;
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+      return data;
+    } catch (err) {
+      console.log(err);
+      return;
+    }
   }
-}
 
-async function addMovieToDom() {
-  outerContainer.innerHTML = "";
-  const movieName = localStorage.getItem("movieName");
-  const data = await fetchMovie(movieName);
-  const movieContainer = document.createElement("div");
-  movieContainer.setAttribute("class", "movie-container");
+  // function to add the movie details to movie page
+  async function addMovieToDom() {
+    outerContainer.innerHTML = "";
+    // get the movie title from local storage
+    const movieName = localStorage.getItem("movieName");
+    // get the movie data
+    const data = await fetchMovie(movieName);
+    // create a movie container
+    const movieContainer = document.createElement("div");
+    movieContainer.setAttribute("class", "movie-container");
 
-  movieContainer.innerHTML = `
+    movieContainer.innerHTML = `
         <div class="heading">
           <h1>${data.Title}</h1>
-
-          
           <div class='year-runtime'>
             <p>${data.Year}</p>
             <p>${data.Runtime}</p>
@@ -31,8 +35,7 @@ async function addMovieToDom() {
           <div class='rating'>
             <p class='rating-heading'>Rating</p>
             <p> <i class="fa-solid fa-star"></i> ${data.imdbRating}/10</p>
-          </div>
-          
+          </div>    
         </div>
 
         <div class="movie-info-container">
@@ -46,8 +49,9 @@ async function addMovieToDom() {
           </div>
         </div>
   `;
+    // append the movie container to the outer container
+    outerContainer.append(movieContainer);
+  }
 
-  outerContainer.append(movieContainer);
-}
-
-addMovieToDom();
+  addMovieToDom();
+})();

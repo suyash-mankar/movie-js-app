@@ -4,12 +4,16 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Bootstrap  -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="s ha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
       crossorigin="anonymous"
     />
+
+    <!-- FontAwesome -->
     <script
       src="https://kit.fontawesome.com/bd9c85c262.js"
       crossorigin="anonymous"
@@ -18,6 +22,7 @@
     <title>IMDB</title>
   </head>
   <body>
+    <!-- Navbar -->
     <nav class="navbar">
       <a href="index.html">
         <img
@@ -25,17 +30,19 @@
           alt="logo"
         />
       </a>
-
+      <!-- Search Bar-->
       <input type="text" placeholder="search movie" />
       <i class="fa-solid fa-magnifying-glass"></i>
     </nav>
 
+    <!-- MAIN  SECTION-->
     <div class="movies-container">
       <div class="search-results-container">
         <h1>Your Search Results :</h1>
+        <!-- Search Results Container -->
         <div id="search-results"></div>
       </div>
-
+      <!-- Favourites Container -->
       <div id="favourites-container">
         <h1>Favourites</h1>
         <div id="favourite-list"></div>
