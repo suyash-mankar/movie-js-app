@@ -34,17 +34,102 @@ select:focus {
   color: white;
 }
 
+#back {
+  background-color: #ffca2c;
+  margin-right: 20px;
+  padding: 5px 10px;
+  border-radius: 10px;
+}
+
+#back:hover {
+  background-color: yellow;
+}
+
 p,
 h4,
 h1 {
   color: white;
 }
 
-.heading{
-    display: flex;
+.heading {
+  position: relative;
 }
 
+.year-runtime {
+  display: flex;
+}
+
+.year-runtime > p {
+  margin-right: 20px;
+  color: rgb(13, 202, 240);
+}
+
+.movie-container {
+  padding: 50px 200px;
+}
+
+.rating {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  font-size: 1.5rem;
+}
+
+.rating-heading {
+  color: #ffca2c;
+  margin: 0;
+}
+
+.fa-star {
+  color: #ffca2c;
+}
 
 .movie-info-container {
   display: flex;
+  margin-top: 20px;
+  background: radial-gradient(
+    circle at 10% 20%,
+    rgb(0, 0, 0) 0%,
+    rgb(64, 64, 64) 90.2%
+  );
+  box-shadow: 0px 16px 24px 2px hsla(0, 0%, 0%, 0.14),
+    0px 6px 30px 5px hsla(0, 0%, 0%, 0.12),
+    0px 8px 10px -5px hsla(0, 0%, 0%, 0.2);
+}
+
+.movie-info-container img {
+  width: 25%;
+}
+
+.movie-details {
+  padding: 30px 50px;
+}
+
+.movie-details > p {
+  font-size: 1.2rem;
+}
+
+.color-yellow {
+  color: #ffca2c;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+span {
+  color: rgb(125, 171, 239);
+  font-weight: 400;
+}
+
+@media screen and (max-width: 1100px) {
+  .movie-info-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .movie-info-container img {
+    width: 30%;
+    margin: 30px auto;
+  }
 }

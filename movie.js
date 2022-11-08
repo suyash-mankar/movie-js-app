@@ -23,20 +23,27 @@ async function addMovieToDom() {
   movieContainer.innerHTML = `
         <div class="heading">
           <h1>${data.Title}</h1>
-          <p>${data.Year}</p>
-          <p>${data.Runtime}</p>
-          <p>Rating</p>
-          <p>${data.imdbRating}/10</p>
+
+          
+          <div class='year-runtime'>
+            <p>${data.Year}</p>
+            <p>${data.Runtime}</p>
+          </div> 
+          <div class='rating'>
+            <p class='rating-heading'>Rating</p>
+            <p> <i class="fa-solid fa-star"></i> ${data.imdbRating}/10</p>
+          </div>
+          
         </div>
 
         <div class="movie-info-container">
           <img src="${data.Poster}" alt="poster" />
           <div class="movie-details">
-            <h4>Plot</h4>
+            <h4 class='bold'>Plot</h4>
             <p>${data.Plot}</p>
-            <p>Directors: ${data.Director}</p>
-            <p>Cast: ${data.Actors}</p>
-            <p>Genre: ${data.Genre}</p>
+            <p class='color-yellow bold'>Directors : <span> ${data.Director} </span> </p>
+            <p class='color-yellow bold'>Cast : <span> ${data.Actors} </span> </p>
+            <p class='color-yellow bold'>Genre : <span> ${data.Genre} </span> </p>
           </div>
         </div>
   `;
