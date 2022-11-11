@@ -80,6 +80,7 @@
     // if the input is empty -> clear the search results container
     if (searchText.value === "") {
       searchResultsContainer.innerHTML = "";
+      movies = [];
     }
   }
 
