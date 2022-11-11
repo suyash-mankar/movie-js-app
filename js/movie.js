@@ -3,7 +3,7 @@
 
   // function to fetch the data from API and return it
   async function fetchMovie(searchText) {
-    const url = `http://www.omdbapi.com/?i=tt3896198&apikey=49e67bb9&t=${searchText}`;
+    const url = `https://www.omdbapi.com/?i=tt3896198&apikey=49e67bb9&t=${searchText}`;
     try {
       const response = await fetch(url);
       const data = await response.json();
