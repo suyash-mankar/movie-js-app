@@ -1,18 +1,18 @@
 # IMDb - MOVIE SEARCH
 
-A mini IMDB clone app in which user can search for movies based on OMDB API and suggestions will be shown according to the search. On clicking the movie card, the movie details will be shown in another page. The user can also create a list of their favaurite movies by clicking on add favourite button.
+A mini IMDB clone app in which user can search for movies based on OMDB API and suggestions will be shown according to the search. On clicking the movie card, the movie details will be shown in another page. The user can also create a list of their favourite movies by clicking on add to favourite button.
 
 ## Features
 
 ● Home Page
 
 - Search any movie from the API and the search results will be displayed on the frontend (as you type the search results will update, just like Google does for suggestions).
-- Each search result of the movie have a favourite button, clicking on which the movie will be added to “My favourite movies” (a list).
+- Each search result of the movie have a add to favourite button, clicking on which the movie will be added to “Favourites" (a list).
 - On clicking any particular search result (any movie), a new page will open with more information about that movie (movie page)
 
 ● Movie Page
 
-- Will show information about the movie like its name, photo, plot, etc (these are must, rest you can add if you want).
+- Contains information about the movie like its name, photo, plot, etc.
 
 ● My favourite movies Page
 
@@ -40,8 +40,10 @@ A mini IMDB clone app in which user can search for movies based on OMDB API and 
 <img src="https://cdn-icons-png.flaticon.com/512/1051/1051277.png" alt="drawing" width="100"/>
 <img src="https://cdn-icons-png.flaticon.com/512/5968/5968242.png" alt="drawing" width="100"/>
 <img src="https://cdn-icons-png.flaticon.com/512/5968/5968292.png" alt="drawing" width="100"/>
+<img src="https://cdn-icons-png.flaticon.com/512/5968/5968672.png" alt="drawing" width="100" style= "margin-left: 10px"/>
+
 </div>
 
 ## Project
 
-Checkout the website here - https://suyash-mankar.github.io/stopwatch/
+Checkout the website here - https://suyash-mankar.github.io/movie-js-app/
